@@ -31,6 +31,8 @@ enum layer_number {
     // _Layer6 = 6
 };
 
+#define LCTL_ESC LCTL_T(KC_ESC)
+
 /*
 #define CPI_SW USER00
 #define SCRL_SW USER01
@@ -46,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                          KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_RCTL,
+     LCTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                          KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_RCTL,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
@@ -226,20 +228,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             mo_raise_pressed = false;
         }
         return false;
-        break;
-
-    case KC_LCTL:
-        // Implement LCTL_T(KC_ESC) behavior from scratch to avoid unexpected behavior in Ubuntu environment.
-        if (record->event.pressed) {
-            lctl_pressed = true;
-        } else {
-            // Keep regisering ESC to avoid single LCTL input. It causes the mouse pointor flashing in Ubuntu environment, and Ctrl+ESC works as ESC.
-            if (lctl_pressed) {
-                tap_code(KC_ESC);
-            }
-
-            lctl_pressed = false;
-        }
         break;
 
     case KC_RCTL:
