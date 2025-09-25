@@ -233,6 +233,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
             lctl_pressed = true;
         } else {
+            // Keep regisering ESC to avoid single LCTL input. It causes the mouse pointor flashing in Ubuntu environment, and Ctrl+ESC works as ESC.
             if (lctl_pressed) {
                 tap_code(KC_ESC);
             }
@@ -246,6 +247,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
             rctl_pressed = true;
         } else {
+            // Unregister RCTL to avoid hitting Ctrl+'
+            unregister_code(KC_RCTL);
+
             if (rctl_pressed) {
                 tap_code(KC_QUOT);
             }
