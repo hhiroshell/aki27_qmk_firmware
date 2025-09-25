@@ -262,6 +262,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
             mo_lower_pressed = false;
             mo_raise_pressed = false;
+            lctl_pressed = false;
             rctl_pressed = false;
         }
         break;
