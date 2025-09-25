@@ -201,8 +201,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             update_tri_layer(_LOWER, _RAISE, _TRACKBALL);
 
             if (mo_lower_pressed) {
-                register_code(KC_LNG2);
-                unregister_code(KC_LNG2);
+                tap_code(KC_LNG2);
             }
 
             mo_lower_pressed = false;
@@ -221,8 +220,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             update_tri_layer(_LOWER, _RAISE, _TRACKBALL);
 
             if (mo_raise_pressed) {
-                register_code(KC_LNG1);
-                unregister_code(KC_LNG1);
+                tap_code(KC_LNG1);
             }
 
             mo_raise_pressed = false;
@@ -233,11 +231,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KC_LCTL:
         // Implement LCTL_T(KC_ESC) behavior from scratch to avoid unexpected behavior in Ubuntu environment.
         if (record->event.pressed) {
-           lctl_pressed = true;
+            lctl_pressed = true;
         } else {
             if (lctl_pressed) {
-                register_code(KC_ESC);
-                unregister_code(KC_ESC);
+                tap_code(KC_ESC);
             }
 
             lctl_pressed = false;
@@ -247,11 +244,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KC_RCTL:
         // Implement RCTL_T(KC_QUOT) behavior from scratch to avoid unexpected behavior in Ubuntu environment.
         if (record->event.pressed) {
-           rctl_pressed = true;
+            rctl_pressed = true;
         } else {
             if (rctl_pressed) {
-                register_code(KC_QUOT);
-                unregister_code(KC_QUOT);
+                tap_code(KC_QUOT);
             }
 
             rctl_pressed = false;
