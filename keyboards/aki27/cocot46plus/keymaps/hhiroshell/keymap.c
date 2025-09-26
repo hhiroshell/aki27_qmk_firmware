@@ -26,7 +26,7 @@ enum layer_number {
     _LOWER = 1,
     _RAISE = 2,
     _TRACKBALL = 3,
-    // _Layer4 = 4,
+    _SETTING = 4,
     // _Layer5 = 5,
     // _Layer6 = 6
 };
@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                  KC_PGUP, KC_MS_BTN3,    KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
- [_LOWER] = LAYOUT(
+  [_LOWER] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       XXXXXXX, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                       KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
@@ -82,27 +82,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   [_TRACKBALL] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-       EE_CLR,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                         KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, XXXXXXX,
+      XXXXXXX,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                         KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      QK_BOOT, RGB_TOG, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD,                                       XXXXXXX, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX,
+ TG(_SETTING),  KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,                                       XXXXXXX, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD,RGB_RMOD,                                       XXXXXXX,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_MS_BTN1,             KC_MS_BTN2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                                                  KC_PGUP, KC_MS_BTN3,    KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
-  // ),
-  // [_Layer4] = LAYOUT(
-  // //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-  //     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  // //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-  //     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  // //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-  //     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  // //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-  //                       XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,   XXXXXXX,             XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,
-  //                                                                XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-  //                                                           //`--------------'  `--------------'
+    ),
+  [_SETTING] = LAYOUT(
+ //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+ TG(_SETTING), XXXXXXX, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD,                                       SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD,RGB_RMOD,                                       SCRL_IN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_MS_BTN1,             KC_MS_BTN2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                                                                 KC_PGUP, KC_MS_BTN3,    KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
+                                                            //`--------------'  `--------------'
   //   ),
   // [_Layer5] = LAYOUT(
   // //|-------------------------------------------------------|                                   |-------------------------------------------------------|
@@ -136,7 +136,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [1] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [2] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [3] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
-    // [4] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
+    [4] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     // [5] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     // [6] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
 };
@@ -145,21 +145,21 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case _LOWER:
-        rgblight_sethsv_range(HSV_BLUE, 0, 2);
+        rgblight_sethsv_range(HSV_PURPLE, 0, 2);
         cocot_set_scroll_mode(true);
         break;
     case _RAISE:
-        rgblight_sethsv_range(HSV_RED, 0, 2);
+        rgblight_sethsv_range(HSV_WHITE, 0, 2);
         cocot_set_scroll_mode(true);
         break;
     case _TRACKBALL:
-        rgblight_sethsv_range(HSV_GREEN, 0, 2);
+        rgblight_sethsv_range(HSV_BLUE, 0, 2);
         cocot_set_scroll_mode(false);
         break;
-    // case _Layer4:
-    //     rgblight_sethsv_range(HSV_YELLOW, 0, 2);
-    //     cocot_set_scroll_mode(false);
-    //     break;
+    case _SETTING:
+        rgblight_sethsv_range(HSV_YELLOW, 0, 2);
+        cocot_set_scroll_mode(false);
+        break;
     // case _Layer5:
     //     rgblight_sethsv_range(HSV_CYAN, 0, 2);
     //     cocot_set_scroll_mode(false);
