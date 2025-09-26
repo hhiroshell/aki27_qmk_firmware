@@ -31,3 +31,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define OLED_FONT_H "keyboards/aki27/cocot46plus/glcdfont.c"
 
 #define TAPPING_TERM 150
+#define MOUSEKEY_WHEEL_DELTA 2
