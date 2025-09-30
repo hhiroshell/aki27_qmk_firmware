@@ -52,8 +52,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                      KC_LGUI, KC_LALT, MO(_LOWER), KC_SPC, KC_MS_BTN1,               KC_MS_BTN2, KC_ENT, MO(_RAISE), KC_RALT, KC_RGUI,
-                                                                 KC_PGUP, KC_MS_BTN3,    KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
+                        KC_LGUI, KC_LALT, MO(_LOWER), KC_SPC, KC_MS_BTN1,               KC_MS_BTN2, KC_ENT, MO(_RAISE), KC_RALT, KC_RGUI,
+                                                                 KC_PGUP,   KC_MPLY,     KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_LOWER] = LAYOUT(
@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       KC_TILD, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         _______, _______, _______, _______,   KC_MS_BTN4,             KC_MS_BTN5, _______, MO(_TRACKBALL), _______, _______,
-                                                                 KC_PGUP, KC_MS_BTN3,    KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
+                                                                 KC_PGUP,   KC_MPLY,  KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_RAISE] = LAYOUT(
@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX, KC_RSFT,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                  _______, _______, MO(_TRACKBALL), _______,   KC_MS_BTN4,             KC_MS_BTN5, _______, _______, _______, _______,
-                                                                 KC_PGUP, KC_MS_BTN3,    KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
+                                                                 KC_PGUP,   KC_MPLY,  KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_TRACKBALL] = LAYOUT(
@@ -89,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_MS_BTN1,             KC_MS_BTN2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                                                 KC_PGUP, KC_MS_BTN3,    KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
+                                                                 KC_PGUP,   KC_MPLY,  KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_SETTING] = LAYOUT(
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD,RGB_RMOD,                                       SCRL_IN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_MS_BTN1,             KC_MS_BTN2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                                                 KC_PGUP, KC_MS_BTN3,    KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
+                                                                 KC_PGUP,   KC_MPLY,  KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
   //   ),
   // [_Layer5] = LAYOUT(
@@ -132,11 +132,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [0] = { ENCODER_CCW_CW(MS_WHLD, MS_WHLU) },
-    [1] = { ENCODER_CCW_CW(MS_WHLD, MS_WHLU) },
-    [2] = { ENCODER_CCW_CW(MS_WHLD, MS_WHLU) },
-    [3] = { ENCODER_CCW_CW(MS_WHLD, MS_WHLU) },
-    [4] = { ENCODER_CCW_CW(MS_WHLD, MS_WHLU) },
+    [0] = { ENCODER_CCW_CW(KC_MPRV, KC_MNXT) },
+    [1] = { ENCODER_CCW_CW(KC_MPRV, KC_MNXT) },
+    [2] = { ENCODER_CCW_CW(KC_MPRV, KC_MNXT) },
+    [3] = { ENCODER_CCW_CW(KC_MPRV, KC_MNXT) },
+    [4] = { ENCODER_CCW_CW(KC_MPRV, KC_MNXT) },
     // [5] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     // [6] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
 };
