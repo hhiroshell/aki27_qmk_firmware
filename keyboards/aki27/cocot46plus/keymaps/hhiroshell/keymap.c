@@ -187,7 +187,6 @@ bool oled_task_user(void) {
 
 static bool mo_lower_pressed = false;
 static bool mo_raise_pressed = false;
-static bool lctl_pressed = false;
 static bool rctl_pressed = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -250,7 +249,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
             mo_lower_pressed = false;
             mo_raise_pressed = false;
-            lctl_pressed = false;
             rctl_pressed = false;
         }
         break;
