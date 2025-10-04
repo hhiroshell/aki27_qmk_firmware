@@ -25,8 +25,8 @@ enum layer_number {
     _BASE = 0,
     _LOWER = 1,
     _RAISE = 2,
-    _TRACKBALL = 3,
-    _SETTING = 4,
+    _FUNC = 3,
+    _ADMIN = 4,
     // _Layer5 = 5,
     // _Layer6 = 6
 };
@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       KC_TILD, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        _______, _______, _______, _______,   KC_MS_BTN4,             KC_MS_BTN5, _______, MO(_TRACKBALL), _______, _______,
+                        _______, _______, _______, _______,   KC_MS_BTN4,             KC_MS_BTN5, _______, MO(_FUNC), _______, _______,
                                                                  KC_PGUP,   KC_MPLY,  KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
@@ -76,15 +76,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX, KC_RSFT,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                 _______, _______, MO(_TRACKBALL), _______,   KC_MS_BTN4,             KC_MS_BTN5, _______, _______, _______, _______,
+                      _______, _______, MO(_FUNC), _______,   KC_MS_BTN4,             KC_MS_BTN5, _______, _______, _______, _______,
                                                                  KC_PGUP,   KC_MPLY,  KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
-  [_TRACKBALL] = LAYOUT(
+  [_FUNC] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       XXXXXXX,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                         KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
- TG(_SETTING),  KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,                                       XXXXXXX, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX,
+   TG(_ADMIN),  KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,                                       XXXXXXX, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
@@ -92,11 +92,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                  KC_PGUP,   KC_MPLY,  KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
-  [_SETTING] = LAYOUT(
+  [_ADMIN] = LAYOUT(
  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
- TG(_SETTING), XXXXXXX, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD,                                       SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+   TG(_ADMIN), XXXXXXX, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD,                                       SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD,RGB_RMOD,                                       SCRL_IN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
@@ -152,11 +152,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         rgblight_sethsv_range(HSV_WHITE, 0, 2);
         cocot_set_scroll_mode(true);
         break;
-    case _TRACKBALL:
+    case _FUNC:
         rgblight_sethsv_range(HSV_YELLOW, 0, 2);
         cocot_set_scroll_mode(false);
         break;
-    case _SETTING:
+    case _ADMIN:
         rgblight_sethsv_range(HSV_ORANGE, 0, 2);
         cocot_set_scroll_mode(false);
         break;
@@ -195,12 +195,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MO(_LOWER):
         if (record->event.pressed) {
             layer_on(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _TRACKBALL);
+            update_tri_layer(_LOWER, _RAISE, _FUNC);
 
             mo_lower_pressed = true;
         } else {
             layer_off(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _TRACKBALL);
+            update_tri_layer(_LOWER, _RAISE, _FUNC);
 
             if (mo_lower_pressed) {
                 tap_code(KC_LNG2);
@@ -214,12 +214,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MO(_RAISE):
         if (record->event.pressed) {
             layer_on(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _TRACKBALL);
+            update_tri_layer(_LOWER, _RAISE, _FUNC);
 
             mo_raise_pressed = true;
         } else {
             layer_off(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _TRACKBALL);
+            update_tri_layer(_LOWER, _RAISE, _FUNC);
 
             if (mo_raise_pressed) {
                 tap_code(KC_LNG1);
