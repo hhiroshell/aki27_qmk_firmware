@@ -32,6 +32,7 @@ enum layer_number {
 };
 
 #define LCTL_ESC LCTL_T(KC_ESC)
+#define RCTL_QUOT LCTL_T(KC_QUOT)
 
 /*
 #define CPI_SW USER00
@@ -48,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-     LCTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                          KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_RCTL,
+     LCTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                          KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, RCTL_QUOT,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
@@ -187,7 +188,6 @@ bool oled_task_user(void) {
 
 static bool mo_lower_pressed = false;
 static bool mo_raise_pressed = false;
-static bool rctl_pressed = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -229,27 +229,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
         break;
 
-    case KC_RCTL:
-        // Implement RCTL_T(KC_QUOT) behavior from scratch to avoid unexpected behavior in Ubuntu environment.
-        if (record->event.pressed) {
-            rctl_pressed = true;
-        } else {
-            // Unregister RCTL to avoid hitting Ctrl+'
-            unregister_code(KC_RCTL);
-
-            if (rctl_pressed) {
-                tap_code(KC_QUOT);
-            }
-
-            rctl_pressed = false;
-        }
-        break;
 
     default:
         if (record->event.pressed) {
             mo_lower_pressed = false;
             mo_raise_pressed = false;
-            rctl_pressed = false;
         }
         break;
     }
