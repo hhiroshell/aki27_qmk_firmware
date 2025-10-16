@@ -32,7 +32,7 @@ enum layer_number {
 };
 
 #define LCTL_ESC LCTL_T(KC_ESC)
-#define RCTL_QUOT LCTL_T(KC_QUOT)
+#define RCTL_QUOT RCTL_T(KC_QUOT)
 
 /*
 #define CPI_SW USER00
